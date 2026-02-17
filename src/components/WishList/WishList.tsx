@@ -1,20 +1,20 @@
 'use client'
 // import { formatCurrency } from '@/Helpers/formatCurrency'
-// import { WishListRes } from '@/Interfaces/wishlistInterfaces'
+import { WishListRes } from '@/interfaces/wishInterface'
 import { Loader2, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import  { useState } from 'react'
 import { Button } from '../ui/button'
 // import AddToCart from '../AddToCart/AddToCart'
-// import { deleteWishlistProductAction, getWishlistItems } from '@/actions/wishlistActions'
+import { deleteWishlistProductAction, getWishlistItems } from '@/actions/wishListAction'
 import { AddToWishlistRes } from '@/interfaces/addToWishListInterface'
 import toast from 'react-hot-toast'
-import { deleteWishlistProductAction, getWishlistItems } from '@/actions/wishListAction'
-import AddToCart from '../AddToCatr/AddToCart'
-import { WishListRes } from '@/interfaces/wishInterface'
 import { formatCurrency } from '@/helpers/formatCurrency'
+import AddToCart from '../AddToCatr/AddToCart'
+import { Session } from 'next-auth'
 
-export default function Wishlist({WishlistData , session}:{WishlistData:WishListRes|null , session :string}) {
+
+export default function Wishlist({WishlistData }:{WishlistData:WishListRes|null }) {
 
      
     const [wishlist, setWishlist] = useState<WishListRes| null>(WishlistData || null)

@@ -18,6 +18,9 @@ import AddToCart from "@/components/AddToCatr/AddToCart";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 import AddToWishList from "@/components/AddToWishList/AddToWishList";
+import WishlistInitializer from "@/components/WishlistInitializer/WishlistInitializer";
+import { getWishlistItems } from "@/actions/wishListAction";
+import { WishListRes } from "@/interfaces/wishInterface";
 
 
 export default async function Products() {
@@ -27,6 +30,9 @@ export default async function Products() {
   const data: ProductsResponse = await response.json();
 
   const session = getServerSession(authOptions);
+  const wishlistData : WishListRes = await getWishlistItems()
+
+  const ids = wishlistData?.data?.map(item => item.id) // de el ids bta3t kol el products elly fe el wishlist
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
@@ -81,7 +87,7 @@ export default async function Products() {
               </NextLink>
               
 
-              <AddToCart productId={product.id}   />
+              <AddToCart productId={product.id} />
             
               
             </Card>
@@ -89,6 +95,7 @@ export default async function Products() {
           </div>
         ))}
       </div>
+       <WishlistInitializer ids={ids}/>
     </>
   );
 }

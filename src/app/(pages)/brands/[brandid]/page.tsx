@@ -15,6 +15,8 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import AddToCart from "@/components/AddToCatr/AddToCart";
 import { Product, ProductsResponse } from "@/interfaces/productinterface";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
 
 export default async function BrandDetails({ params }: { params: Params }) {
   const { brandid } = await params;
@@ -25,9 +27,9 @@ export default async function BrandDetails({ params }: { params: Params }) {
 
   const data: ProductsResponse = await response.json();
   const branddata: singlebrandRes = await brandRes.json();
+  const session = getServerSession(authOptions);
 
-  console.log(brandid);
-  console.log(data);
+
 
   return (
     <>
@@ -93,7 +95,7 @@ export default async function BrandDetails({ params }: { params: Params }) {
                     </p>
                   </CardContent>
                 </NextLink>
-                <AddToCart productId={product._id} />
+                <AddToCart productId={product._id}  />
               </Card>
             </div>
           ))}

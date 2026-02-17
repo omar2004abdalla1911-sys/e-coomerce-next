@@ -25,13 +25,15 @@ import Autoplay from "embla-carousel-autoplay";
 import Slider from "@/components/Slider/Slider";
 import AddToCart from "@/components/AddToCatr/AddToCart";
 import AddToWishlist from "@/components/AddToWishList/AddToWishList";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
 export default async function ProductDetails({ params }: { params: Params }) {
   const { productsid } = await params;
   const response = await fetch(
     `${process.env.API_URL}/products/` + productsid,
   );
   const { data: product }: { data: Product } = await response.json();
-  console.log(productsid);
+  const session = getServerSession(authOptions);
   return (
     <>
       <Card className=" grid grid-cols-1 md:grid-cols-3  items-center  ">
@@ -59,8 +61,8 @@ export default async function ProductDetails({ params }: { params: Params }) {
             <p className="text-lg font-semibold"> EGP {product.price}</p>
           </CardContent>
           <div className="flex items-center gap-3">
-          <AddToCart productId={product.id} />
-          <AddToWishlist productId={product.id}/>
+          <AddToCart productId={product.id}  />
+         
           </div>
         </div>
       </Card>

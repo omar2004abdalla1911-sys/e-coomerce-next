@@ -11,7 +11,7 @@ export default async function WishlistPage() {
     const response = await  getWishlistItems()
 
   return  <>
-        <Wishlist WishlistData={response.count==0 ? null : response} session='' />   
+        <Wishlist WishlistData={response.count==0 ? null : response}  />   
         
         {/* law feeh data fel wishlist ab3athalo law mafesh ab3at null */}
   

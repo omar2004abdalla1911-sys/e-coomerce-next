@@ -20,7 +20,7 @@ interface CartProps {
 export default function Cart({ cartData }: CartProps) {
   const [cart , setCart] = useState<cartRes | null>(cartData);
   const [loading, setLoading] = useState<string|null>(null);
-  dispatchEvent(new CustomEvent('cartUpdate',{detail : cartData?.numOfCartItems}))
+  // dispatchEvent(new CustomEvent('cartUpdate',{detail : cartData?.numOfCartItems}))
 
 
   // Early return for empty cart

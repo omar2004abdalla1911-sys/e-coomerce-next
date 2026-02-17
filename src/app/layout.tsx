@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer/Footer";
 import { SessionProvider } from "next-auth/react";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 export const metadata: Metadata = {
   title: "Shop Mart",
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <WishlistProvider>
       
+          
           <Navbar />
 
           <div className="container mx-auto p-3">
@@ -29,6 +32,7 @@ export default function RootLayout({
 
           <Footer />
   
+        </WishlistProvider>
       </body>
     </html>
   );

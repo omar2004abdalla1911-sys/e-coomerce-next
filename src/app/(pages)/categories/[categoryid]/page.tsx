@@ -13,6 +13,8 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import AddToCart from "@/components/AddToCatr/AddToCart";
 import { singlecatRes } from "@/interfaces/categoryinterface";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
 
 
 export default async function CategoryDetails({ params }: { params: Params }) {
@@ -28,9 +30,9 @@ export default async function CategoryDetails({ params }: { params: Params }) {
 
   const data: ProductsResponse = await response.json();
   const catdata: singlecatRes = await catRes.json();
+  const session = getServerSession(authOptions);
 
-  console.log(categoryid);
-  console.log(data);
+
 
   return (
     <>
@@ -100,7 +102,7 @@ export default async function CategoryDetails({ params }: { params: Params }) {
                     </p>
                   </CardContent>
                 </NextLink>
-                <AddToCart productId={product._id} />
+                <AddToCart productId={product._id}  />
               </Card>
             </div>
           ))}
